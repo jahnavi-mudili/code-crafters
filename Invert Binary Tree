@@ -1,0 +1,22 @@
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if not root:
+          return None
+        root.left,root.right=root.right,root.left          (this program is also correct)
+        self.invertTree(root.right)
+        self.invertTree(root.left)
+        return root
+                          (or)
+        
+        if not root:
+            return None
+        stack=[]
+        stack.append(root)
+        while stack:
+            ele=stack.pop()
+            ele.left,ele.right=ele.right,ele.left
+            if ele.left:
+                stack.append(ele.left)
+            if ele.right:
+                stack.append(ele.right)
+        return root
